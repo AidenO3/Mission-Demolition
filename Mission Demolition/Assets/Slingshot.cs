@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Slingshot : MonoBehaviour
 {
+    public int velocityMult = 10;
     [Header("Inscribed")]
     public GameObject projectilePrefab;
 
@@ -46,6 +47,16 @@ public class Slingshot : MonoBehaviour
 
         Vector3 projPos = launchPoint.transform.position + mouseDelta;
         projectile.transform.position = projPos;
+
+        if (Input.GetMouseButtonUp(0)) {
+            aimingMode = false;
+            launchPoint.SetActive(false);
+            Rigidbody projRb = projectile.GetComponent<Rigidbody>();
+            projRb.isKinematic = false;
+            projRb.velocity = -mouseDelta * velocityMult;
+            FollowCam.POI = projectile;
+            projectile = null;
+        }
     }
 
     private void OnMouseEnter()
