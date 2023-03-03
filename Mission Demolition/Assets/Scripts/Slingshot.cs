@@ -7,6 +7,7 @@ public class Slingshot : MonoBehaviour
     public int velocityMult = 10;
     [Header("Inscribed")]
     public GameObject projectilePrefab;
+    public GameObject projLinePrefab;
 
     [Header("Dynamic")]
     public GameObject launchPoint;
@@ -54,8 +55,11 @@ public class Slingshot : MonoBehaviour
             Rigidbody projRb = projectile.GetComponent<Rigidbody>();
             projRb.isKinematic = false;
             projRb.velocity = -mouseDelta * velocityMult;
+            FollowCam.SWITCH_VIEW(FollowCam.eView.slingshot);
             FollowCam.POI = projectile;
+            Instantiate<GameObject> (projLinePrefab, projectile.transform);
             projectile = null;
+            MissionDemolition.SHOT_FIRED();
         }
     }
 
@@ -78,6 +82,5 @@ public class Slingshot : MonoBehaviour
         projectile.transform.position = launchPoint.transform.position;
         projectile.GetComponent<Rigidbody>().isKinematic = true;
         projectile.SetActive(true);
-        print("marble created");
     }
 }
