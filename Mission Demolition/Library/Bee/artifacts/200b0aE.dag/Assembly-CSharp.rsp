@@ -353,6 +353,7 @@
 "Assets/Scripts/Goal.cs"
 "Assets/Scripts/Marble.cs"
 "Assets/Scripts/MarbleLine.cs"
+"Assets/Scripts/Menu.cs"
 "Assets/Scripts/MissionDemolition.cs"
 "Assets/Scripts/RigidbodySleep.cs"
 "Assets/Scripts/Slingshot.cs"
